@@ -9,7 +9,6 @@
         bool whosTurn = false; // true - kolej gracza 1, false - kolej gracza 2
         int turn_Count = 0; 
         const int MAX_TURN_COUNT = 9;
-
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
@@ -35,8 +34,9 @@
             this.startGameButton = new System.Windows.Forms.Button();
             this.titleLabel = new System.Windows.Forms.Label();
             this.gamePanel = new System.Windows.Forms.Panel();
-            this.playAgainButton = new System.Windows.Forms.Button();
             this.tieLabel = new System.Windows.Forms.Label();
+            this.playAgainButton = new System.Windows.Forms.Button();
+            this.winnerLabel = new System.Windows.Forms.Label();
             this.C2Button = new System.Windows.Forms.Button();
             this.C3Button = new System.Windows.Forms.Button();
             this.B3Button = new System.Windows.Forms.Button();
@@ -47,6 +47,7 @@
             this.B1Button = new System.Windows.Forms.Button();
             this.A1Button = new System.Windows.Forms.Button();
             this.goToMenuButton = new System.Windows.Forms.Button();
+            this.whosTurnLabel = new System.Windows.Forms.Label();
             this.gamePanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -90,8 +91,9 @@
             // gamePanel
             // 
             this.gamePanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.gamePanel.Controls.Add(this.playAgainButton);
             this.gamePanel.Controls.Add(this.tieLabel);
+            this.gamePanel.Controls.Add(this.playAgainButton);
+            this.gamePanel.Controls.Add(this.winnerLabel);
             this.gamePanel.Controls.Add(this.C2Button);
             this.gamePanel.Controls.Add(this.C3Button);
             this.gamePanel.Controls.Add(this.B3Button);
@@ -106,6 +108,20 @@
             this.gamePanel.Size = new System.Drawing.Size(597, 597);
             this.gamePanel.TabIndex = 3;
             // 
+            // tieLabel
+            // 
+            this.tieLabel.AutoSize = true;
+            this.tieLabel.BackColor = System.Drawing.Color.Transparent;
+            this.tieLabel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.tieLabel.Font = new System.Drawing.Font("Segoe UI", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.tieLabel.ForeColor = System.Drawing.Color.DimGray;
+            this.tieLabel.Location = new System.Drawing.Point(188, 175);
+            this.tieLabel.Name = "tieLabel";
+            this.tieLabel.Size = new System.Drawing.Size(232, 89);
+            this.tieLabel.TabIndex = 9;
+            this.tieLabel.Text = "Remis!";
+            this.tieLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // playAgainButton
             // 
             this.playAgainButton.BackColor = System.Drawing.Color.Snow;
@@ -118,18 +134,19 @@
             this.playAgainButton.UseVisualStyleBackColor = false;
             this.playAgainButton.Click += new System.EventHandler(this.playAgainButton_Click);
             // 
-            // tieLabel
+            // winnerLabel
             // 
-            this.tieLabel.AutoSize = true;
-            this.tieLabel.BackColor = System.Drawing.Color.Transparent;
-            this.tieLabel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.tieLabel.Font = new System.Drawing.Font("Segoe UI", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tieLabel.ForeColor = System.Drawing.Color.DimGray;
-            this.tieLabel.Location = new System.Drawing.Point(162, 163);
-            this.tieLabel.Name = "tieLabel";
-            this.tieLabel.Size = new System.Drawing.Size(278, 106);
-            this.tieLabel.TabIndex = 5;
-            this.tieLabel.Text = "Remis!";
+            this.winnerLabel.AutoSize = true;
+            this.winnerLabel.BackColor = System.Drawing.Color.Transparent;
+            this.winnerLabel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.winnerLabel.Font = new System.Drawing.Font("Segoe UI", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.winnerLabel.ForeColor = System.Drawing.Color.DimGray;
+            this.winnerLabel.Location = new System.Drawing.Point(21, 175);
+            this.winnerLabel.Name = "winnerLabel";
+            this.winnerLabel.Size = new System.Drawing.Size(553, 89);
+            this.winnerLabel.TabIndex = 5;
+            this.winnerLabel.Text = "Gracz X wygrywa!";
+            this.winnerLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // C2Button
             // 
@@ -233,12 +250,27 @@
             this.goToMenuButton.UseVisualStyleBackColor = false;
             this.goToMenuButton.Click += new System.EventHandler(this.goToMenuButton_Click);
             // 
+            // whosTurnLabel
+            // 
+            this.whosTurnLabel.AutoSize = true;
+            this.whosTurnLabel.BackColor = System.Drawing.Color.Transparent;
+            this.whosTurnLabel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.whosTurnLabel.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.whosTurnLabel.ForeColor = System.Drawing.Color.Snow;
+            this.whosTurnLabel.Location = new System.Drawing.Point(341, 31);
+            this.whosTurnLabel.Name = "whosTurnLabel";
+            this.whosTurnLabel.Size = new System.Drawing.Size(215, 46);
+            this.whosTurnLabel.TabIndex = 10;
+            this.whosTurnLabel.Text = "Kolej gracza: ";
+            this.whosTurnLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // TickTacToe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::Projekt_6.Properties.Resources.Untitled_design;
+            this.BackgroundImage = global::Projekt_6.Properties.Resources.Untitled_design1;
             this.ClientSize = new System.Drawing.Size(782, 753);
+            this.Controls.Add(this.whosTurnLabel);
             this.Controls.Add(this.goToMenuButton);
             this.Controls.Add(this.gamePanel);
             this.Controls.Add(this.exitButton);
@@ -272,6 +304,8 @@
         private Button B1Button;
         private Button A1Button;
         private Button playAgainButton;
+        private Label winnerLabel;
         private Label tieLabel;
+        private Label whosTurnLabel;
     }
 }
