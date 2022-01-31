@@ -46,26 +46,26 @@ namespace Projekt_6
         {
             Button clickedButton = (Button)sender;
 
-            if (whosTurn) //kolej gracza 1
-            {
-                clickedButton.Text = "X";
-                whosTurnLabel.Text = "Kolej gracza: Gracz 1";
-            }
-            else //kolej gracza 2
+            if (!whosTurn) //kolej gracza 1
             {
                 clickedButton.Text = "O";
                 whosTurnLabel.Text = "Kolej gracza: Gracz 2";
             }
-            turn_Count++;
-            whosTurn = !whosTurn;
+            else //kolej gracza 2
+            {
+                clickedButton.Text = "X";
+                whosTurnLabel.Text = "Kolej gracza: Gracz 1";
+            }
+           
+            
             clickedButton.Enabled = false;
-
+            turn_Count++;
             if (checkForWinner())
             {
                 winnerLabel.Show();
                 playAgainButton.Show(); 
                 disableButtons();
-                if (whosTurn)//gracz 1
+                if (!whosTurn)//gracz 1
                     winnerLabel.Text = "Gracz 1 wygrywa!";
                 else //gracz 2
                     winnerLabel.Text = "Gracz 2 wygrywa!";
@@ -77,6 +77,7 @@ namespace Projekt_6
                 playAgainButton.Show();
                 whosTurnLabel.Hide();
             }
+            whosTurn = !whosTurn;
         }
 
         public void hideEndLabelAndButton()
@@ -138,15 +139,15 @@ namespace Projekt_6
 
         public bool checkForWinner()
         {
-                if ((A1Button.Text == A2Button.Text && A2Button.Text == A3Button.Text && !A1Button.Enabled) ||
-                    (B1Button.Text == B2Button.Text && B2Button.Text == B3Button.Text && !B1Button.Enabled) ||
-                    (C1Button.Text == C2Button.Text && C2Button.Text == C3Button.Text && !C1Button.Enabled) ||
-                    (A1Button.Text == B1Button.Text && B1Button.Text == C1Button.Text && !A1Button.Enabled) ||
-                    (A2Button.Text == B2Button.Text && B2Button.Text == C2Button.Text && !A2Button.Enabled) ||
-                    (A3Button.Text == B3Button.Text && B3Button.Text == C3Button.Text && !A3Button.Enabled) ||
-                    (A1Button.Text == B2Button.Text && B2Button.Text == C3Button.Text && !A1Button.Enabled)||
-                    (C1Button.Text == B2Button.Text && B2Button.Text == A3Button.Text && !C1Button.Enabled))
-                    return true;
+                if ((A1Button.Text == A2Button.Text && A2Button.Text == A3Button.Text && !A1Button.Enabled) || //sprawdzanie wiersza 1
+                    (B1Button.Text == B2Button.Text && B2Button.Text == B3Button.Text && !B1Button.Enabled) || //sprawdzanie wiersza 2
+                    (C1Button.Text == C2Button.Text && C2Button.Text == C3Button.Text && !C1Button.Enabled) || //sprawdzanie wiersza 3
+                    (A1Button.Text == B1Button.Text && B1Button.Text == C1Button.Text && !A1Button.Enabled) || //sprawdzanie kolumny 1 
+                    (A2Button.Text == B2Button.Text && B2Button.Text == C2Button.Text && !A2Button.Enabled) || //sprawdzanie kolumny 2
+                    (A3Button.Text == B3Button.Text && B3Button.Text == C3Button.Text && !A3Button.Enabled) || //sprawdzanie kolumny 3
+                    (A1Button.Text == B2Button.Text && B2Button.Text == C3Button.Text && !A1Button.Enabled) || //sprawdzanie 1 przekatnej
+                    (C1Button.Text == B2Button.Text && B2Button.Text == A3Button.Text && !C1Button.Enabled))   //sprawdzanie 2 przekatnej
+                return true;
                 else
                     return false;
 
