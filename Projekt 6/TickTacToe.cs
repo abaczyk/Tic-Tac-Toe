@@ -60,12 +60,7 @@ namespace Projekt_6
             whosTurn = !whosTurn;
             clickedButton.Enabled = false;
 
-            if (turn_Count == MAX_TURN_COUNT)
-            {
-                tieLabel.Show();
-                playAgainButton.Show();
-            }
-            else if (checkForWinner())
+            if (checkForWinner())
             {
                 winnerLabel.Show();
                 playAgainButton.Show(); 
@@ -74,6 +69,13 @@ namespace Projekt_6
                     winnerLabel.Text = "Gracz 1 wygrywa!";
                 else //gracz 2
                     winnerLabel.Text = "Gracz 2 wygrywa!";
+                whosTurnLabel.Hide();
+            }
+            else if (turn_Count == MAX_TURN_COUNT)
+            {
+                tieLabel.Show();
+                playAgainButton.Show();
+                whosTurnLabel.Hide();
             }
         }
 
@@ -89,6 +91,7 @@ namespace Projekt_6
             resetGame();
             hideEndLabelAndButton();
             whosTurnLabel.Text = "Kolej gracza: Gracz 1";
+            whosTurnLabel.Show();
         }
 
         public void resetGame()
